@@ -1,0 +1,139 @@
+<a id="start"></a>
+
+<div class="nav-container">
+    <div class="bar bar--sm visible-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-3 col-sm-2">
+                    <a routerLink="/">
+                        <img class="logo logo-dark" alt="logo" src="../../assets/img/logo-dark.png" />
+                        <img class="logo logo-light" alt="logo" src="../../assets/img/logo-light.png" />
+                    </a>
+                </div>
+                <div class="col-xs-9 col-sm-10 text-right">
+                    <a href="#" class="hamburger-toggle" data-toggle-class="#menu2;hidden-xs hidden-sm">
+                        <i class="icon icon--sm stack-interface stack-menu"></i>
+                    </a>
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </div>
+    <!--end bar-->
+    <nav id="menu2" class="bar bar-2 hidden-xs " data-scroll-class='100vh:pos-fixed'>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 text-center text-left-sm hidden-xs col-md-push-5">
+                    <div class="bar__module">
+                        <a href="/">
+                            <img class="logo logo-dark" alt="logo" src="../../assets/img/logo-dark.png" />
+                            <img class="logo logo-light" alt="logo" src="../../assets/img/logo-light.png" />
+                        </a>
+                    </div>
+                    <!--end module-->
+                </div>
+                <div class="col-md-5 col-md-pull-2">
+                    <div class="bar__module">
+                        <ul class="menu-horizontal text-left">
+                            <li>
+                                <a routerLink="/">Home</a>
+                            </li>
+                            <li>
+                                <a href="/ok">Getting started</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--end module-->
+                </div>
+                <div class="col-md-5 text-right text-left-xs text-left-sm">
+                    <div class="bar__module" *ngIf="isLoggedIn == false">
+                        <a class="btn btn--sm type--uppercase" routerLink="/login">
+                                    <span class="btn__text">
+                                        Log In
+                                    </span>
+                        </a>
+                        <a class="btn btn--sm btn--primary type--uppercase" routerLink="/signup">
+                                    <span class="btn__text">
+                                        Sign Up
+                                    </span>
+                        </a>
+                    </div>
+                    <div class="bar__module" *ngIf="isLoggedIn == true">
+                        <a class="btn btn--sm type--uppercase" (click)="goToDashboard()">
+                                    <span class="btn__text">
+                                        Dashboard
+                                    </span>
+                        </a>
+                        <a class="btn btn--sm btn--primary type--uppercase" routerLink="/logout">
+                                    <span class="btn__text">
+                                        Logout
+                                    </span>
+                        </a>
+                    </div>
+                    <!--end module-->
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </nav>
+    <!--end bar-->
+</div>
+
+<div class="main-container">
+
+    <router-outlet></router-outlet>
+
+    <section class="switchable space--xs"></section>
+
+    <footer class="text-center space--sm footer-5 bg--secondary  ">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="heading-block">
+                        <ul class="list-inline list--hover">
+                            <li>
+                                <a href="#">
+                                    <span>Our Company</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>Products</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>Blog</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>Support</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <span class="type--fine-print">Made in Marseille</span>
+                    </div>
+                    <div>
+                                <span class="type--fine-print">&copy;
+                                    <span class="update-year"></span> Wefaves Inc.</span>
+                        <a class="type--fine-print" href="#">Privacy Policy</a>
+                        <a class="type--fine-print" href="#">Legal</a>
+                    </div>
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </footer>
+</div>
+
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+    <i class="stack-interface stack-up-open-big"></i>
+</a>

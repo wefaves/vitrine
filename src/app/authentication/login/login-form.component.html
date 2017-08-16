@@ -1,0 +1,18 @@
+<div *ngIf="errorMessage">
+    <div class="alert alert-danger">{{errorMessage}}</div>
+</div>
+
+<form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <div class="row">
+        <div class="col-sm-12">
+            <input type="text" placeholder="Username" required [(ngModel)]="model._username" name="_username" #name="ngModel" />
+        </div>
+        <div class="col-sm-12">
+            <input type="password" placeholder="Password" required [(ngModel)]="model._password" name="_password" #name="ngModel" />
+        </div>
+        <div class="col-sm-12">
+            <button class="btn btn--primary type--uppercase" type="submit" [disabled]="!loginForm.form.valid">Login</button>
+        </div>
+    </div>
+    <!--end of row-->
+</form>
