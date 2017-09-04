@@ -12,7 +12,6 @@ script:
 - if [ "$TRAVIS_BRANCH" == "master" ]; then ng build --prod; fi
 - if [ "$TRAVIS_BRANCH" != "master" ]; then ng build --dev; fi
 deploy:
-  matrix:
   - provider: s3
     access_key_id: AKIAIGIMETIIXYTR3NUQ
     secret_access_key:
