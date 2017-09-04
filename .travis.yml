@@ -9,53 +9,53 @@ before_script:
 - npm install -g --silent @angular/cli
 - npm install
 script:
-- if [ "$TRAVIS_BRANCH" == "master" ]; then ng build --prod --aot=false; fi
-- if [ "$TRAVIS_BRANCH" != "master" ]; then ng build --dev --aot=false; fi
+- if [ "$TRAVIS_BRANCH" == "master" ]; then ng build --prod; fi
+- if [ "$TRAVIS_BRANCH" != "master" ]; then ng build --dev; fi
 deploy:
+  matrix:
   - provider: s3
-    access_key_id: AKIAJUOXUY6DMFUSBYGQ
+    access_key_id: AKIAIGIMETIIXYTR3NUQ
     secret_access_key:
-      secure: EkolnrVtpWMxn6ztANoEtyFduSNdidV5QlB3ap+csEKEXgAupYkhg5ZX3YDJvNNnc5obaSUh1psNHK0E9JAGVG2JHU/SLYSXxNKyDRu4NAVd52GMITJggKJkllX75Gn8z9obwlOw24hVrLT22hpkMwhJVr3sKbTh1YOweN1KB4LDTq1JN/N+OzyFbVmKwG7uPQE26Ykt7Jn1RdpIivS10VOcg8o4HusjdmrUUUHL/Dm7aubG7fCD1X0drJAQW+reMWe5cJ7StcFvdy1gehpWhbyPJDFrIWg12oFWLV52PQw5sAae5fl17kbfu4GC3liGNYRd6BEDxxSEsxkJrF5oL9czZOuYfdCsjQV7jnKsmQjNy+08fE5HwgmM5CRNgt22eXCrZJuZPYEwUChY3YwcLzqDF4omw/TKevUuAu3hcUuvILhuR2O9ialD/enHEtkAdaPZ0hYfOM7lv1joBVAKs8feiVJ0iVAezgjSwyIlDvDfPD7astZgT7cN4zWYEVoAF81iElmQ9k1rL/6HwyqOfW42GQn7mWMGDs+l5t/ZOGcu4M1RGIqGtJUqPLzjxARK/3nrtPzGCmu4fa19wO/A8xFZFJ/pyaEbAhHG5QDT53EPKywiygerk5KWr7h6Lq6FOiIY14ABb1jPMTl+cebD8zVfQeKgsUOPx/LCR1EOLIQ=
+      secure: b43ibUM8+/sGbf1/FpYiwB/2++6cW/7/+mj2r9I+bbTkrUs5trqizj/qHPjFeR6hZawyfHp6eY6NNbe1mP0QBx1A+fOymIsVDOP2p5p3WKw0GcatAi6JXX3V1lOvm7HOG9BPDQt5dynm79pqRJc3+owYzMBU6aQjDbIWKYBo8NRU2Is0/bnLfPt2vIDH37ft7/lEXevcG5lQIVCkypxYxheM89vvRCjEA6RjKMAnYKv5biRevq0wEDJLxEml0yqQy0t45BTbOy29LqLOJUjFoctlIAlOvOWniJALZ1PtSXX55YidOgapEegMVTSjiHnxjTxTFybROY/nKr/bgSAv6A89AYWR28kxnTnJ5rtdwbwrRuEw54KP8lN9aMkkRxQejt6zuYC8lG2MMPlqHhIy46E5d1kYTv6J9+lre6jGjf+Bkys0Dx43e1Jh/V7W9RhTGkHG+vOhJCb6zJy+lw5H+JPjMnMTcbnnT07dupPk5AD7ySUqeknRatDAEENb9+qg+wWipNEyYQwXxHB2VpEkb6JilFx7dE5CohmuhtNIiMbvDpxAOE54luhZnBvfXQaBssOWPGt55ngWyGNoZVxI+kb7L+/0yXyTfoPzxdZxFgfzec0s4R5bw8p6IJkA5VFUSppzaTFGCb0Blc3kbBp1WHbXqJAUBXAt1GvKA4Y+EV0=
     bucket: dev.wefaves.com
-    local-dir: "dist"
+    local-dir: dist
     acl: public_read
     skip_cleanup: true
     region: eu-central-1
     on:
       branch: develop
   - provider: s3
-    access_key_id: AKIAJUOXUY6DMFUSBYGQ
+    access_key_id: AKIAIGIMETIIXYTR3NUQ
     secret_access_key:
-      secure: EkolnrVtpWMxn6ztANoEtyFduSNdidV5QlB3ap+csEKEXgAupYkhg5ZX3YDJvNNnc5obaSUh1psNHK0E9JAGVG2JHU/SLYSXxNKyDRu4NAVd52GMITJggKJkllX75Gn8z9obwlOw24hVrLT22hpkMwhJVr3sKbTh1YOweN1KB4LDTq1JN/N+OzyFbVmKwG7uPQE26Ykt7Jn1RdpIivS10VOcg8o4HusjdmrUUUHL/Dm7aubG7fCD1X0drJAQW+reMWe5cJ7StcFvdy1gehpWhbyPJDFrIWg12oFWLV52PQw5sAae5fl17kbfu4GC3liGNYRd6BEDxxSEsxkJrF5oL9czZOuYfdCsjQV7jnKsmQjNy+08fE5HwgmM5CRNgt22eXCrZJuZPYEwUChY3YwcLzqDF4omw/TKevUuAu3hcUuvILhuR2O9ialD/enHEtkAdaPZ0hYfOM7lv1joBVAKs8feiVJ0iVAezgjSwyIlDvDfPD7astZgT7cN4zWYEVoAF81iElmQ9k1rL/6HwyqOfW42GQn7mWMGDs+l5t/ZOGcu4M1RGIqGtJUqPLzjxARK/3nrtPzGCmu4fa19wO/A8xFZFJ/pyaEbAhHG5QDT53EPKywiygerk5KWr7h6Lq6FOiIY14ABb1jPMTl+cebD8zVfQeKgsUOPx/LCR1EOLIQ=
+      secure: b43ibUM8+/sGbf1/FpYiwB/2++6cW/7/+mj2r9I+bbTkrUs5trqizj/qHPjFeR6hZawyfHp6eY6NNbe1mP0QBx1A+fOymIsVDOP2p5p3WKw0GcatAi6JXX3V1lOvm7HOG9BPDQt5dynm79pqRJc3+owYzMBU6aQjDbIWKYBo8NRU2Is0/bnLfPt2vIDH37ft7/lEXevcG5lQIVCkypxYxheM89vvRCjEA6RjKMAnYKv5biRevq0wEDJLxEml0yqQy0t45BTbOy29LqLOJUjFoctlIAlOvOWniJALZ1PtSXX55YidOgapEegMVTSjiHnxjTxTFybROY/nKr/bgSAv6A89AYWR28kxnTnJ5rtdwbwrRuEw54KP8lN9aMkkRxQejt6zuYC8lG2MMPlqHhIy46E5d1kYTv6J9+lre6jGjf+Bkys0Dx43e1Jh/V7W9RhTGkHG+vOhJCb6zJy+lw5H+JPjMnMTcbnnT07dupPk5AD7ySUqeknRatDAEENb9+qg+wWipNEyYQwXxHB2VpEkb6JilFx7dE5CohmuhtNIiMbvDpxAOE54luhZnBvfXQaBssOWPGt55ngWyGNoZVxI+kb7L+/0yXyTfoPzxdZxFgfzec0s4R5bw8p6IJkA5VFUSppzaTFGCb0Blc3kbBp1WHbXqJAUBXAt1GvKA4Y+EV0=
     bucket: www.dev.wefaves.com
-    local-dir: "dist"
+    local-dir: dist
     acl: public_read
     skip_cleanup: true
     region: eu-central-1
     on:
       branch: develop
   - provider: s3
-    access_key_id: AKIAJUOXUY6DMFUSBYGQ
+    access_key_id: AKIAIGIMETIIXYTR3NUQ
     secret_access_key:
-      secure: EkolnrVtpWMxn6ztANoEtyFduSNdidV5QlB3ap+csEKEXgAupYkhg5ZX3YDJvNNnc5obaSUh1psNHK0E9JAGVG2JHU/SLYSXxNKyDRu4NAVd52GMITJggKJkllX75Gn8z9obwlOw24hVrLT22hpkMwhJVr3sKbTh1YOweN1KB4LDTq1JN/N+OzyFbVmKwG7uPQE26Ykt7Jn1RdpIivS10VOcg8o4HusjdmrUUUHL/Dm7aubG7fCD1X0drJAQW+reMWe5cJ7StcFvdy1gehpWhbyPJDFrIWg12oFWLV52PQw5sAae5fl17kbfu4GC3liGNYRd6BEDxxSEsxkJrF5oL9czZOuYfdCsjQV7jnKsmQjNy+08fE5HwgmM5CRNgt22eXCrZJuZPYEwUChY3YwcLzqDF4omw/TKevUuAu3hcUuvILhuR2O9ialD/enHEtkAdaPZ0hYfOM7lv1joBVAKs8feiVJ0iVAezgjSwyIlDvDfPD7astZgT7cN4zWYEVoAF81iElmQ9k1rL/6HwyqOfW42GQn7mWMGDs+l5t/ZOGcu4M1RGIqGtJUqPLzjxARK/3nrtPzGCmu4fa19wO/A8xFZFJ/pyaEbAhHG5QDT53EPKywiygerk5KWr7h6Lq6FOiIY14ABb1jPMTl+cebD8zVfQeKgsUOPx/LCR1EOLIQ=
+      secure: b43ibUM8+/sGbf1/FpYiwB/2++6cW/7/+mj2r9I+bbTkrUs5trqizj/qHPjFeR6hZawyfHp6eY6NNbe1mP0QBx1A+fOymIsVDOP2p5p3WKw0GcatAi6JXX3V1lOvm7HOG9BPDQt5dynm79pqRJc3+owYzMBU6aQjDbIWKYBo8NRU2Is0/bnLfPt2vIDH37ft7/lEXevcG5lQIVCkypxYxheM89vvRCjEA6RjKMAnYKv5biRevq0wEDJLxEml0yqQy0t45BTbOy29LqLOJUjFoctlIAlOvOWniJALZ1PtSXX55YidOgapEegMVTSjiHnxjTxTFybROY/nKr/bgSAv6A89AYWR28kxnTnJ5rtdwbwrRuEw54KP8lN9aMkkRxQejt6zuYC8lG2MMPlqHhIy46E5d1kYTv6J9+lre6jGjf+Bkys0Dx43e1Jh/V7W9RhTGkHG+vOhJCb6zJy+lw5H+JPjMnMTcbnnT07dupPk5AD7ySUqeknRatDAEENb9+qg+wWipNEyYQwXxHB2VpEkb6JilFx7dE5CohmuhtNIiMbvDpxAOE54luhZnBvfXQaBssOWPGt55ngWyGNoZVxI+kb7L+/0yXyTfoPzxdZxFgfzec0s4R5bw8p6IJkA5VFUSppzaTFGCb0Blc3kbBp1WHbXqJAUBXAt1GvKA4Y+EV0=
     bucket: wefaves.com
-    local-dir: "dist"
+    local-dir: dist
     acl: public_read
     skip_cleanup: true
     region: eu-central-1
     on:
       branch: master
   - provider: s3
-    access_key_id: AKIAJUOXUY6DMFUSBYGQ
+    access_key_id: AKIAIGIMETIIXYTR3NUQ
     secret_access_key:
-      secure: EkolnrVtpWMxn6ztANoEtyFduSNdidV5QlB3ap+csEKEXgAupYkhg5ZX3YDJvNNnc5obaSUh1psNHK0E9JAGVG2JHU/SLYSXxNKyDRu4NAVd52GMITJggKJkllX75Gn8z9obwlOw24hVrLT22hpkMwhJVr3sKbTh1YOweN1KB4LDTq1JN/N+OzyFbVmKwG7uPQE26Ykt7Jn1RdpIivS10VOcg8o4HusjdmrUUUHL/Dm7aubG7fCD1X0drJAQW+reMWe5cJ7StcFvdy1gehpWhbyPJDFrIWg12oFWLV52PQw5sAae5fl17kbfu4GC3liGNYRd6BEDxxSEsxkJrF5oL9czZOuYfdCsjQV7jnKsmQjNy+08fE5HwgmM5CRNgt22eXCrZJuZPYEwUChY3YwcLzqDF4omw/TKevUuAu3hcUuvILhuR2O9ialD/enHEtkAdaPZ0hYfOM7lv1joBVAKs8feiVJ0iVAezgjSwyIlDvDfPD7astZgT7cN4zWYEVoAF81iElmQ9k1rL/6HwyqOfW42GQn7mWMGDs+l5t/ZOGcu4M1RGIqGtJUqPLzjxARK/3nrtPzGCmu4fa19wO/A8xFZFJ/pyaEbAhHG5QDT53EPKywiygerk5KWr7h6Lq6FOiIY14ABb1jPMTl+cebD8zVfQeKgsUOPx/LCR1EOLIQ=
+      secure: b43ibUM8+/sGbf1/FpYiwB/2++6cW/7/+mj2r9I+bbTkrUs5trqizj/qHPjFeR6hZawyfHp6eY6NNbe1mP0QBx1A+fOymIsVDOP2p5p3WKw0GcatAi6JXX3V1lOvm7HOG9BPDQt5dynm79pqRJc3+owYzMBU6aQjDbIWKYBo8NRU2Is0/bnLfPt2vIDH37ft7/lEXevcG5lQIVCkypxYxheM89vvRCjEA6RjKMAnYKv5biRevq0wEDJLxEml0yqQy0t45BTbOy29LqLOJUjFoctlIAlOvOWniJALZ1PtSXX55YidOgapEegMVTSjiHnxjTxTFybROY/nKr/bgSAv6A89AYWR28kxnTnJ5rtdwbwrRuEw54KP8lN9aMkkRxQejt6zuYC8lG2MMPlqHhIy46E5d1kYTv6J9+lre6jGjf+Bkys0Dx43e1Jh/V7W9RhTGkHG+vOhJCb6zJy+lw5H+JPjMnMTcbnnT07dupPk5AD7ySUqeknRatDAEENb9+qg+wWipNEyYQwXxHB2VpEkb6JilFx7dE5CohmuhtNIiMbvDpxAOE54luhZnBvfXQaBssOWPGt55ngWyGNoZVxI+kb7L+/0yXyTfoPzxdZxFgfzec0s4R5bw8p6IJkA5VFUSppzaTFGCb0Blc3kbBp1WHbXqJAUBXAt1GvKA4Y+EV0=
     bucket: www.wefaves.com
-    local-dir: "dist"
+    local-dir: dist
     acl: public_read
     skip_cleanup: true
     region: eu-central-1
     on:
       branch: master
-
 notifications:
   slack: wefaves:F04bQ8KHvdkQJ5HtOUvhBvy8
